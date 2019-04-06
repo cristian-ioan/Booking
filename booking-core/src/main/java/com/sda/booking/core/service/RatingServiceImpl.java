@@ -3,7 +3,7 @@ package com.sda.booking.core.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("hostService")
+@Service("ratingService")
 @Transactional(readOnly = true, rollbackFor = Exception.class)
-public class HostServiceImpl implements HostService {
+public class RatingServiceImpl implements RatingService {
 }

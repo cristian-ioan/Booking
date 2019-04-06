@@ -8,6 +8,9 @@
         <class>com.sda.booking.core.entity.Booking</class>
         <class>com.sda.booking.core.entity.Availability</class>
         <class>com.sda.booking.core.entity.Payment</class>
+        <class>com.sda.booking.core.entity.Client</class>
+        <class>com.sda.booking.core.entity.Property</class>
+        <class>com.sda.booking.core.entity.Rating</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
