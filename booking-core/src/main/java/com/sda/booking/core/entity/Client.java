@@ -6,14 +6,17 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "hosts", schema = "booking")
-public class Host extends BaseEntity {
+@Table(name = "clients", schema = "booking")
+public class Client extends BaseEntity {
 
     @Column(name = "name", length = 40, nullable = false)
     private String name;
 
     @Column(name = "email", length = 40, nullable = false)
     private String eMail;
+
+    @Column(name = "phone", length = 40, nullable = false)
+    private String phone;
 
     public String getName() {
         return name;
@@ -31,26 +34,35 @@ public class Host extends BaseEntity {
         this.eMail = eMail;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Host)) return false;
-        Host host = (Host) o;
-        return Objects.equals(name, host.name) &&
-                Objects.equals(eMail, host.eMail);
+        if (!(o instanceof Client)) return false;
+        Client client = (Client) o;
+        return Objects.equals(getName(), client.getName()) &&
+                Objects.equals(geteMail(), client.geteMail()) &&
+                Objects.equals(getPhone(), client.getPhone());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, eMail);
+        return Objects.hash(getName(), geteMail(), getPhone());
     }
 
     @Override
     public String toString() {
-        return "Host{" +
+        return "Client{" +
                 "name='" + name + '\'' +
                 ", eMail='" + eMail + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
-
 }

@@ -5,6 +5,9 @@
     <persistence-unit name="booking" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.sda.booking.core.entity.Host</class>
+        <class>com.sda.booking.core.entity.Client</class>
+        <class>com.sda.booking.core.entity.Property</class>
+        <class>com.sda.booking.core.entity.Rating</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
