@@ -62,18 +62,6 @@ public class ClientImplTest {
 
     @Test
     @Rollback(false)
-    @Transactional
-    public void createClientTest() {
-        Client client = new Client();
-        client.setName("Bogdan Bogdanel");
-        client.setPhone("0726789456");
-        client.seteMail("bogdan.bogdanel@gmail.com");
-        clientService.createClient(client);
-        Assert.assertNotNull(client);
-    }
-
-    @Test
-    @Rollback(false)
     public void updateClientTest(){
 
         Client client = clientService.getById(10L);
