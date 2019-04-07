@@ -26,16 +26,19 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
+    @Transactional
     public Property createProperty(Property property) {
         return propertyRepository.save(property);
     }
 
     @Override
+    @Transactional
     public Property updateProperty(Property property) {
         return propertyRepository.save(property);
     }
 
     @Override
+    @Transactional
     public void deleteProperty(Property property) {
         propertyRepository.delete(property);
     }

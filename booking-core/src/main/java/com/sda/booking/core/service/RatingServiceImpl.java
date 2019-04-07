@@ -26,16 +26,19 @@ public class RatingServiceImpl implements RatingService {
     }
 
     @Override
+    @Transactional
     public Rating createRating(Rating rating) {
         return ratingRepository.save(rating);
     }
 
     @Override
+    @Transactional
     public Rating updateRating(Rating rating) {
         return ratingRepository.save(rating);
     }
 
     @Override
+    @Transactional
     public void deleteRating(Rating rating) {
         ratingRepository.delete(rating);
     }

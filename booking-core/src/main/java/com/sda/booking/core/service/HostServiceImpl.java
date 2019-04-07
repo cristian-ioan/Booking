@@ -26,16 +26,19 @@ public class HostServiceImpl implements HostService {
     }
 
     @Override
+    @Transactional
     public Host createHost(Host host) {
         return hostRepository.save(host);
     }
 
     @Override
+    @Transactional
     public Host updateHost(Host host) {
         return hostRepository.save(host);
     }
 
     @Override
+    @Transactional
     public void deleteHost(Host host) {
         hostRepository.delete(host);
     }
