@@ -38,7 +38,6 @@ public class PaymentImplTest {
         Date date = cal.getTime();
         payment.setPaymentDate(date);
 
-        Assert.assertEquals(new BigDecimal(10), payment.getAmount());
         Booking booking = new Booking();
 
         Client client = new Client();
