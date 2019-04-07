@@ -19,6 +19,14 @@ public class ClientImplTest {
     private ClientService clientService;
 
     @Test
+    @Transactional
+    @Rollback(false)
+    public void getClientByIdTest() {
+        Client client = clientService.getById(3L);
+        Assert.assertEquals("Bogdan Bogdanel", client.getName());
+    }
+
+    @Test
     @Rollback(false)
     @Transactional
     public void createClientTest() {
@@ -29,5 +37,7 @@ public class ClientImplTest {
         clientService.createClient(client);
         Assert.assertNotNull(client);
     }
+
+
 
 }
