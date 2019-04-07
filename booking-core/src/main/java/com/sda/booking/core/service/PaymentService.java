@@ -1,7 +1,6 @@
 package com.sda.booking.core.service;
 
 import com.sda.booking.core.entity.Payment;
-
 import java.util.List;
 
 public interface PaymentService {

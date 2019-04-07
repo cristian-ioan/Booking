@@ -1,8 +1,6 @@
 package com.sda.booking.core.service;
 
 import com.sda.booking.core.entity.Booking;
-import com.sda.booking.core.entity.Client;
-import com.sda.booking.core.entity.Property;
 import com.sda.booking.core.enums.RoomType;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import javax.transaction.Transactional;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/spring-config/spring-root.xml")
@@ -55,5 +53,51 @@ public class BookingImplTest {
         bookingService.createBooking(booking);
 
         Assert.assertNotNull(booking);
+    }
+
+    @Test
+    public void getByIdTest(){
+        Booking booking = bookingService.getById(2L);
+        Assert.assertEquals("DOUBLE", String.valueOf(booking.getRoomType()));
+    }
+
+    @Test
+    @Rollback(false)
+    public void getAllTest(){
+
+        List<Booking> bookingList = bookingService.getAll();
+        Assert.assertEquals(2,bookingList.size());
+
+    }
+
+    @Test
+    @Rollback(false)
+    public void updateBooking(){
+
+        Booking booking = bookingService.getById(1L);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(0);
+        cal.set(2019, 03, 15);
+        Date date = cal.getTime();
+        booking.setCheckOut(date);
+        bookingService.updateBooking(booking);
+
+        Booking booking1 = bookingService.getById(1L);
+
+        Assert.assertEquals(date, booking1.getCheckOut());
+
+    }
+
+    @Test
+    @Rollback(false)
+    @Transactional
+    public void deleteBooking(){
+
+        List<Booking> bookingList = bookingService.getAll();
+        int size = bookingList.size();
+        bookingService.deleteBooking(bookingService.getById(1L));
+        List<Booking> bookingList1 = bookingService.getAll();
+        Assert.assertEquals(size - 1, bookingList1.size());
     }
 }

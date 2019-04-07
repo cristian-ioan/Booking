@@ -1,7 +1,6 @@
 package com.sda.booking.core.entity;
 
 import com.sda.booking.core.base.BaseEntity;
-
 import javax.persistence.*;
 import java.util.Objects;
 

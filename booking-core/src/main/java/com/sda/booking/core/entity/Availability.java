@@ -1,7 +1,6 @@
 package com.sda.booking.core.entity;
 
 import com.sda.booking.core.base.BaseEntity;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -34,6 +33,14 @@ public class Availability extends BaseEntity {
 
     @Column(name = "price_single", length = 10, nullable = false)
     private BigDecimal priceSingle;
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
 
     public String getRoomName() {
         return roomName;
