@@ -27,6 +27,20 @@ public class RatingImplTest {
     private PropertyService propertyService;
 
     @Test
+    @Rollback(false)
+    @Transactional
+    public void createRatingTest() {
+        Rating rating = new Rating();
+        rating.setClient(clientService.getById(1L));
+        rating.setComment("sunteti praf");
+        rating.setProperty(propertyService.getById(3L));
+        rating.setRating(1);
+
+        ratingService.createRating(rating);
+        Assert.assertNotNull(rating);
+    }
+
+    @Test
     @Transactional
     @Rollback(false)
     public void getRatingByIdTest() {
@@ -40,9 +54,9 @@ public class RatingImplTest {
     public void getAllRatingsTest() {
 
         Rating rating = new Rating();
-        rating.setClient(clientService.getById(11L));
+        rating.setClient(clientService.getById(3L));
         rating.setComment("sunteti asa si asa");
-        rating.setProperty(propertyService.getById(1L));
+        rating.setProperty(propertyService.getById(3L));
         rating.setRating(2);
         ratingService.createRating(rating);
 
@@ -52,28 +66,14 @@ public class RatingImplTest {
 
     @Test
     @Rollback(false)
-    @Transactional
-    public void createRatingTest() {
-        Rating rating = new Rating();
-        rating.setClient(clientService.getById(3L));
-        rating.setComment("sunteti praf");
-        rating.setProperty(propertyService.getById(1L));
-        rating.setRating(1);
-
-        ratingService.createRating(rating);
-        Assert.assertNotNull(rating);
-    }
-
-    @Test
-    @Rollback(false)
     public void updateRatingTest(){
 
-        Rating rating = ratingService.getById(2L);
-        rating.setClient(clientService.getById(3L));
+        Rating rating = ratingService.getById(3L);
+        rating.setClient(clientService.getById(1L));
         rating.setComment("comsi comsa");
         rating.setProperty(propertyService.getById(1L));
         Rating expectedRating = ratingService.updateRating(rating);
-        Rating actualRating = ratingService.getById(2L);
+        Rating actualRating = ratingService.getById(3L);
         Assert.assertEquals(expectedRating, actualRating);
 
     }

@@ -21,6 +21,17 @@ public class HostImplTest {
     private HostService hostService;
 
     @Test
+    @Rollback(false)
+    @Transactional
+    public void createHostTest() {
+        Host host = new Host();
+        host.setName("Dan Negru");
+        host.seteMail("dan.negrul@gmail.com");
+        hostService.createHost(host);
+        Assert.assertNotNull(host);
+    }
+
+    @Test
     @Transactional
     @Rollback(false)
     public void getHostByIdTest() {
@@ -47,26 +58,16 @@ public class HostImplTest {
         Assert.assertEquals(3, hosts.size());
     }
 
-    @Test
-    @Rollback(false)
-    @Transactional
-    public void createHostTest() {
-        Host host = new Host();
-        host.setName("Simona Halep");
-        host.seteMail("simonahalep@gmail.com");
-        hostService.createHost(host);
-        Assert.assertNotNull(host);
-    }
 
     @Test
     @Rollback(false)
     public void updateHostTest(){
 
-        Host host = hostService.getById(2L);
+        Host host = hostService.getById(3L);
         host.setName("Dan Otil");
         host.seteMail("dan.otil@gmail.com");
         Host expectedHost = hostService.updateHost(host);
-        Host actualHost = hostService.getById(2L);
+        Host actualHost = hostService.getById(3L);
         Assert.assertEquals(expectedHost, actualHost);
 
     }
