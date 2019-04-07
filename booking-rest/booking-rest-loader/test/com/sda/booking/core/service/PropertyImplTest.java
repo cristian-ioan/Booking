@@ -24,6 +24,21 @@ public class PropertyImplTest {
     private HostService hostService;
 
     @Test
+    @Rollback(false)
+    @Transactional
+    public void createPropertyTest() {
+        Property property = new Property();
+        property.setName("Ruina SRL");
+        property.seteMail("ruinasrl@gmail.com");
+        property.setPhone("0754265987");
+        property.setAddress("Brasov");
+
+        property.setHost(hostService.getById(1L));
+        propertyService.createProperty(property);
+        Assert.assertNotNull(property);
+    }
+
+    @Test
     @Transactional
     @Rollback(false)
     public void getPropertyByIdTest() {
@@ -46,21 +61,6 @@ public class PropertyImplTest {
 
         List<Property> properties = propertyService.getAll();
         Assert.assertEquals(2, properties.size());
-    }
-
-    @Test
-    @Rollback(false)
-    @Transactional
-    public void createPropertyTest() {
-        Property property = new Property();
-        property.setName("Ruina SRL");
-        property.seteMail("ruinasrl@gmail.com");
-        property.setPhone("0754265987");
-        property.setAddress("Brasov");
-
-        property.setHost(hostService.getById(1L));
-        propertyService.createProperty(property);
-        Assert.assertNotNull(property);
     }
 
     @Test
