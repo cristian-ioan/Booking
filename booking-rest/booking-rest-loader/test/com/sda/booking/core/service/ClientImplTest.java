@@ -35,7 +35,7 @@ public class ClientImplTest {
     @Transactional
     @Rollback(false)
     public void getClientByIdTest() {
-        Client client = clientService.getById(1L);
+        Client client = clientService.getById(3L);
         Assert.assertEquals("Bogdan Bogdanel", client.getName());
     }
 
@@ -62,14 +62,26 @@ public class ClientImplTest {
 
     @Test
     @Rollback(false)
+    @Transactional
+    public void createClientTest() {
+        Client client = new Client();
+        client.setName("Bogdan Bogdanel");
+        client.setPhone("0726789456");
+        client.seteMail("bogdan.bogdanel@gmail.com");
+        clientService.createClient(client);
+        Assert.assertNotNull(client);
+    }
+
+    @Test
+    @Rollback(false)
     public void updateClientTest(){
 
-        Client client = clientService.getById(3L);
+        Client client = clientService.getById(10L);
         client.setName("Mardare Mariana");
         client.setPhone("0754658741");
         client.seteMail("mardare.mariana@gmail.com");
         Client expectedClient = clientService.updateClient(client);
-        Client actualClient = clientService.getById(3L);
+        Client actualClient = clientService.getById(10L);
         Assert.assertEquals(expectedClient, actualClient);
 
     }
@@ -80,7 +92,7 @@ public class ClientImplTest {
 
         List<Client> clients = clientService.getAll();
         int size = clients.size();
-        Client client = clientService.getById(2L);
+        Client client = clientService.getById(10L);
         clientService.deleteClient(client);
         clients = clientService.getAll();
         Assert.assertEquals(size - 1, clients.size());

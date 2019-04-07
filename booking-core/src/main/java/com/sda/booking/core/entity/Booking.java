@@ -39,6 +39,22 @@ public class Booking extends BaseEntity {
     @Column(name = "booking_date", length = 8, nullable = false)
     private Date bookingDate;
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
     public Date getCheckIn() {
         return checkIn;
     }
