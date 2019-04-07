@@ -1,7 +1,7 @@
 package com.sda.booking.core.service;
 
-import com.sda.booking.core.entity.Host;
 import com.sda.booking.core.repository.HostRepository;
+import com.sda.booking.core.entity.Host;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
