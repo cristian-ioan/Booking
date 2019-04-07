@@ -28,12 +28,12 @@ public class PropertyImplTest {
     @Transactional
     public void createPropertyTest() {
         Property property = new Property();
-        property.setName("Ruina SRL");
-        property.seteMail("ruinasrl@gmail.com");
-        property.setPhone("0754265987");
-        property.setAddress("Brasov");
+        property.setName("Hotel Faleza");
+        property.seteMail("faleza@gmail.com");
+        property.setPhone("0712365987");
+        property.setAddress("Mamaia");
 
-        property.setHost(hostService.getById(1L));
+        property.setHost(hostService.getById(2L));
         propertyService.createProperty(property);
         Assert.assertNotNull(property);
     }

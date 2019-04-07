@@ -4,6 +4,7 @@ import com.sda.booking.core.entity.Booking;
 import com.sda.booking.core.entity.Client;
 import com.sda.booking.core.entity.Property;
 import com.sda.booking.core.enums.RoomType;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,15 +43,17 @@ public class BookingImplTest {
         Date date = cal.getTime();
         booking.setBookingDate(date);
         cal.set(2019,04,05);
-        booking.setCheckIn(date);
+        Date dateCheck1 = cal.getTime();
+        booking.setCheckIn(dateCheck1);
         cal.set(2019,04,07);
-        booking.setCheckOut(date);
+        Date dateCheckOut = cal.getTime();
+        booking.setCheckOut(dateCheckOut);
         booking.setNumberOfRooms(1);
         booking.setRoomType(String.valueOf(RoomType.DOUBLE));
         booking.setNumberOfPersons(2);
 
         bookingService.createBooking(booking);
 
-
+        Assert.assertNotNull(booking);
     }
 }

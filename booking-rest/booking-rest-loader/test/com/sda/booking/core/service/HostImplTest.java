@@ -24,8 +24,8 @@ public class HostImplTest {
     @Transactional
     public void createHostTest() {
         Host host = new Host();
-        host.setName("Dan Negru");
-        host.seteMail("dan.negrul@gmail.com");
+        host.setName("Simona Halep");
+        host.seteMail("simonahalep@gmail.com");
         hostService.createHost(host);
         Assert.assertNotNull(host);
     }

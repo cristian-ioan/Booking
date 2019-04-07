@@ -31,9 +31,9 @@ public class ClientImplTest {
     @Transactional
     public void createClientTest() {
         Client client = new Client();
-        client.setName("Bogdan Bogdanel");
-        client.setPhone("0726789456");
-        client.seteMail("bogdan.bogdanel@gmail.com");
+        client.setName("Radu Mazare");
+        client.setPhone("0726734256");
+        client.seteMail("radumazare@gmail.com");
         clientService.createClient(client);
         Assert.assertNotNull(client);
     }
