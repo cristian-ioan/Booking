@@ -21,8 +21,10 @@ public class BookingImplTest {
 
     @Autowired
     private BookingService bookingService;
+
     @Autowired
     private ClientService clientService;
+
     @Autowired
     private PropertyService propertyService;
 
@@ -100,4 +102,5 @@ public class BookingImplTest {
         List<Booking> bookingList1 = bookingService.getAll();
         Assert.assertEquals(size - 1, bookingList1.size());
     }
+
 }

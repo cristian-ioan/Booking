@@ -26,7 +26,6 @@ public class AvailabilityImplTest {
     @Autowired
     private PropertyService propertyService;
 
-
     @Test
     @Rollback(false)
     public void createAvailabilityTest() {
