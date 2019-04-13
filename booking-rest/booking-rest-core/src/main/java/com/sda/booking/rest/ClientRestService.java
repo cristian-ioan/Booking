@@ -17,18 +17,18 @@ public class ClientRestService {
     @Autowired
     private ClientService clientService;
 
-    @Path("/get-all")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Client> getAll(){
-        return clientService.getAll();
-    }
-
     @Path("/get/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Client getById(@PathParam("id") long id){
         return clientService.getById(id);
+    }
+
+    @Path("/get-all")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Client> getAll(){
+        return clientService.getAll();
     }
 
     @Path("/get-name/{name}")
@@ -38,6 +38,23 @@ public class ClientRestService {
         return clientService.getClientByName(name);
     }
 
+    @Path("/create")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Client createClient(Client client){
+        return clientService.createClient(client);
+    }
+
+    @Path("/update")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Client updateClient(Client client){
+        return clientService.updateClient(client);
+    }
+
     @Path("/delete")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
@@ -45,14 +62,6 @@ public class ClientRestService {
     public void deleteClient(@QueryParam("clientId") long id){
         Client client = clientService.getById(id);
         clientService.deleteClient(client);
-    }
-
-    @Path("/create")
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Client createClient(Client client){
-        return clientService.createClient(client);
     }
 
 }
