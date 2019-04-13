@@ -28,7 +28,9 @@ public class ClientImplTest {
         client.setPhone("0726789456");
         client.seteMail("bogdan.bogdanel@gmail.com");
         clientService.createClient(client);
-        Assert.assertNotNull(client);
+        Assert.assertEquals("Bogdan Bogdanel", client.getName());
+        Assert.assertEquals("bogdan.bogdanel@gmail.com", client.geteMail());
+//        Assert.assertNotNull(client);
     }
 
     @Test
@@ -38,6 +40,14 @@ public class ClientImplTest {
         Client client = clientService.getById(3L);
         Assert.assertEquals("Bogdan Bogdanel", client.getName());
     }
+
+//    @Test
+//    @Transactional
+//    @Rollback(false)
+//    public void getClientByNameTest(){
+//        Client client = clientService.getByName("Mardare Mariana");
+//        Assert.assertEquals("Mardare Mariana", client.getName());
+//    }
 
     @Test
     @Rollback(false)

@@ -26,7 +26,6 @@ public class PaymentImplTest {
     @Autowired
     private BookingService bookingService;
 
-
     @Test
     @Rollback(false)
     public void createPaymentTest() {
