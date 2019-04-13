@@ -52,7 +52,7 @@ public class PropertyRestService {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public void deleteProperty(@QueryParam("ratingId") long id){
+    public void deleteProperty(@QueryParam("propertyId") long id){
         Property property = propertyService.getById(id);
         propertyService.deleteProperty(property);
     }
