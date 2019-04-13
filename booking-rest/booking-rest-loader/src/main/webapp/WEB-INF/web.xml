@@ -1,7 +1,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee/ http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
 
-    <display-name>SDA-Hypermaket 2019 REST LOADER</display-name>
+    <display-name>SDA-Booking 2019 REST LOADER</display-name>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
