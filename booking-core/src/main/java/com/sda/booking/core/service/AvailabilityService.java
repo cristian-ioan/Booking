@@ -1,6 +1,8 @@
 package com.sda.booking.core.service;
 
 import com.sda.booking.core.entity.Availability;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public interface AvailabilityService {
@@ -10,4 +12,5 @@ public interface AvailabilityService {
     Availability createAvailability(Availability availability);
     Availability updateAvailability(Availability availability);
     void deleteAvailability(Availability availability);
+    List<Availability> findAllPropertiesAvailableDuringACertainDateInterval(LocalDate fromDate, LocalDate toDate);
 }
