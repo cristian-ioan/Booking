@@ -8,11 +8,9 @@ import com.sda.booking.core.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-
 import static org.aspectj.runtime.internal.Conversions.longValue;
 
 @Service("bookingService")
@@ -25,7 +23,7 @@ public class BookingServiceImpl implements BookingService{
     @Autowired
     private AvailabilityService availabilityService;
 
-    SendEmail sendEmail = new SendEmail();
+    private SendEmail sendEmail = new SendEmail();
 
     @Override
     public Booking getById(Long id) {
@@ -56,22 +54,21 @@ public class BookingServiceImpl implements BookingService{
     }
 
     @Override
-    public void sendBookingMail(Booking booking) {
+    public void sendBookingMail(Booking booking, Availability availability) {
 
-        Availability availability = new Availability();
-
-        String message = "Dear " + booking.getClient().getName() + "/n" + "Thank you for choosing "
+        String message = "Dear " + booking.getClient().getName() + "\n" + "Thank you for choosing "
                 + booking.getProperty().getName() + ". According to your order, we make a reservation for you as following:"
-                + "/n" + "-" + booking.getNumberOfRooms() + " room(s) "
-                + "/n" + booking.getRoomType()
-                + "/n" + " check-in date: " + booking.getCheckIn()
-                + "/n" + " check-out date: " + booking.getCheckOut()
-                + "/n" + "price: " + getIntervalBetweenTwoDates(booking.getCheckOut(),booking.getCheckIn())*
-                getRoomPrice(availability,booking) + "."
-                + "/n" + " We are looking forward to have you our guest!";
+                + "\n" + "-" + booking.getNumberOfRooms() + " room(s) "
+                + "\n" + booking.getRoomType()
+                + "\n" + " check-in date: " + booking.getCheckIn()
+                + "\n" + " check-out date: " + booking.getCheckOut()
+                + "\n" + "price: " + getIntervalBetweenTwoDates(booking.getCheckIn(),booking.getCheckOut())*
+                getRoomPrice(availability,booking) + " RON."
+                + "\n" + " We are looking forward to have you our guest!";
         String eMail = booking.getClient().geteMail();
         String subject = "Room reservation for " + booking.getClient().getName();
-        if(availabilityService.existsAvailabilityByFromDateAndToDate(booking.getCheckIn(),booking.getCheckOut())){
+        boolean isAvailable = availabilityService.existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(booking.getCheckIn(),booking.getCheckOut());
+        if(!isAvailable){
             sendEmail.sendEmail(message,eMail,subject);
         }else{
             String nonAvailabilityMessage = "Sorry, but we don't have available rooms in the period you chose.";
@@ -82,7 +79,8 @@ public class BookingServiceImpl implements BookingService{
     public Long getIntervalBetweenTwoDates(Date firstDate, Date secondDate){
 
         Long diff = secondDate.getTime() - firstDate.getTime();
-        return  diff;
+        Long diffDays = diff / (60 * 60 * 1000 * 24);
+        return  diffDays;
 
     }
 

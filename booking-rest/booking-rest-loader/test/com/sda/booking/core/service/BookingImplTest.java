@@ -1,5 +1,6 @@
 package com.sda.booking.core.service;
 
+import com.sda.booking.core.entity.Availability;
 import com.sda.booking.core.entity.Booking;
 import com.sda.booking.core.enums.RoomType;
 import org.junit.Assert;
@@ -27,6 +28,9 @@ public class BookingImplTest {
 
     @Autowired
     private PropertyService propertyService;
+
+    @Autowired
+    private AvailabilityService availabilityService;
 
     @Test
     @Rollback(false)
@@ -103,4 +107,13 @@ public class BookingImplTest {
         Assert.assertEquals(size - 1, bookingList1.size());
     }
 
+    @Test
+    @Rollback(false)
+    @Transactional
+    public void sendBookingMailTest(){
+        Availability availability = availabilityService.getById(3L);
+        Booking booking = bookingService.getById(2L);
+
+        bookingService.sendBookingMail(booking,availability);
+    }
 }

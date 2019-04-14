@@ -10,15 +10,17 @@ public class SendEmail {
     public void sendEmail(String message, String mailAddress, String subject ) {
 
         final String username = "java2Iasi@gmail.com";
-        final String password = "Java2Iasi2018";
+        final String password = "JavaIasi2018";
 
-        Properties prop = new Properties();
-        prop.put("mail.smtp.host", "smtp.gmail.com");
-        prop.put("mail.smtp.port", "587");
-        prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.starttls.enable", "true"); //TLS
+        //Setting up configurations for the email connection to the Google SMTP server using TLS
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
 
-        Session session = Session.getInstance(prop,
+        Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(username, password);

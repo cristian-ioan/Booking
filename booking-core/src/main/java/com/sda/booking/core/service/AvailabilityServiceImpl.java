@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -47,12 +46,12 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     }
 
     @Override
-    public List<Availability> findAllPropertiesAvailableDuringACertainDateInterval(Date fromDate, Date toDate) {
+    public List<Availability> findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromDate, Date toDate) {
         return availabilityRepository.findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
     }
 
     @Override
-    public boolean existsAvailabilityByFromDateAndToDate(Date fromDate, Date toDate) {
-        return availabilityRepository.existsAvailabilityByFromDateAndToDate(fromDate, toDate);
+    public boolean existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromDate, Date toDate) {
+        return availabilityRepository.existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
     }
 }

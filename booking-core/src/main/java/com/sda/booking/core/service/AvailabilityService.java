@@ -13,6 +13,6 @@ public interface AvailabilityService {
     Availability createAvailability(Availability availability);
     Availability updateAvailability(Availability availability);
     void deleteAvailability(Availability availability);
-    List<Availability> findAllPropertiesAvailableDuringACertainDateInterval(Date fromDate, Date toDate);
-    public boolean existsAvailabilityByFromDateAndToDate(Date fromDate, Date toDate);
+    List<Availability> findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromDate, Date toDate);
+    boolean existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromDate, Date toDate);
 }
