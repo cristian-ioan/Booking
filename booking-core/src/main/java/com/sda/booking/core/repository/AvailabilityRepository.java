@@ -13,6 +13,8 @@ public interface AvailabilityRepository extends EntityRepository<Availability> {
                                                                                           Date toDate);
     boolean existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromDate, Date toDate);
 
+    List<Availability> getAvailabilitiesByFromDateEndingWithAndToDateIsAfter(Date fromDate, Date toDate);
+
 }
 
 

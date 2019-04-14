@@ -34,23 +34,23 @@ public class BookingImplTest {
 
         Booking booking = new Booking();
 
-        booking.setClient(clientService.getById(1L));
-        booking.setProperty(propertyService.getById(1L));
+        booking.setClient(clientService.getById(3L));
+        booking.setProperty(propertyService.getById(4L));
 
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(0);
-        cal.set(2019, 03, 12);
+        cal.set(2019, Calendar.AUGUST, 5);
         Date date = cal.getTime();
         booking.setBookingDate(date);
-        cal.set(2019,04,05);
+        cal.set(2019,Calendar.AUGUST,15);
         Date dateCheck1 = cal.getTime();
         booking.setCheckIn(dateCheck1);
-        cal.set(2019,04,07);
+        cal.set(2019,Calendar.AUGUST,21);
         Date dateCheckOut = cal.getTime();
         booking.setCheckOut(dateCheckOut);
-        booking.setNumberOfRooms(1);
+        booking.setNumberOfRooms(2);
         booking.setRoomType(String.valueOf(RoomType.DOUBLE));
-        booking.setNumberOfPersons(2);
+        booking.setNumberOfPersons(4);
 
         bookingService.createBooking(booking);
 
