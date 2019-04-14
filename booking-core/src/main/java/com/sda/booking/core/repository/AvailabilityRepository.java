@@ -2,7 +2,6 @@ package com.sda.booking.core.repository;
 
 import com.sda.booking.core.base.EntityRepository;
 import com.sda.booking.core.entity.Availability;
-
 import java.time.LocalDate;
 import java.util.List;
 
