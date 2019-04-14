@@ -9,6 +9,8 @@ import java.util.List;
 public interface AvailabilityRepository extends EntityRepository<Availability> {
     List<Availability> findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(LocalDate fromDate,
                                                                                           LocalDate toDate);
+
+    public boolean existsAvailabilityByFromDateAndToDate(LocalDate fromDate, LocalDate toDate);
 }
 
 

@@ -49,4 +49,9 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     public List<Availability> findAllPropertiesAvailableDuringACertainDateInterval(LocalDate fromDate, LocalDate toDate) {
         return availabilityRepository.findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
     }
+
+    @Override
+    public boolean existsAvailabilityByFromDateAndToDate(LocalDate fromDate, LocalDate toDate) {
+        return availabilityRepository.existsAvailabilityByFromDateAndToDate(fromDate, toDate);
+    }
 }

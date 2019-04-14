@@ -99,4 +99,11 @@ public class AvailabilityImplTest {
         List<Availability> availabilityList1 = availabilityService.getAll();
         Assert.assertEquals(size - 1, availabilityList1.size());
     }
+
+//    @Test
+//    @Rollback(false)
+//    @Transactional
+//    public List<Availability> findAllPropertiesAvailableDuringACertainDateInterval(){
+//
+//    }
 }
