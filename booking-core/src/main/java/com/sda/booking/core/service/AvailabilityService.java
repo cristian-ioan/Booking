@@ -13,4 +13,5 @@ public interface AvailabilityService {
     Availability updateAvailability(Availability availability);
     void deleteAvailability(Availability availability);
     List<Availability> findAllPropertiesAvailableDuringACertainDateInterval(LocalDate fromDate, LocalDate toDate);
+    public boolean existsAvailabilityByFromDateAndToDate(LocalDate fromDate, LocalDate toDate);
 }
