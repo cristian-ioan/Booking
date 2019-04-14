@@ -54,4 +54,9 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     public boolean existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromDate, Date toDate) {
         return availabilityRepository.existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
     }
+
+    @Override
+    public List<Availability> getAvailabilitiesByFromDateEndingWithAndToDateIsAfter(Date fromDate, Date toDate) {
+        return availabilityRepository.getAvailabilitiesByFromDateEndingWithAndToDateIsAfter(fromDate, toDate);
+    }
 }

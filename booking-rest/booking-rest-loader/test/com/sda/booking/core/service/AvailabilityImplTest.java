@@ -1,6 +1,7 @@
 package com.sda.booking.core.service;
 
 import com.sda.booking.core.entity.Availability;
+import com.sda.booking.core.entity.Booking;
 import com.sda.booking.core.enums.RoomType;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.security.acl.LastOwnerException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +27,9 @@ public class AvailabilityImplTest {
 
     @Autowired
     private PropertyService propertyService;
+
+    @Autowired
+    private BookingService bookingService;
 
     @Test
     @Rollback(false)
@@ -112,12 +117,12 @@ public class AvailabilityImplTest {
 
         Calendar cal1 = Calendar.getInstance();
         cal1.setTimeInMillis(0);
-        cal1.set(2019, Calendar.JULY, 10);
+        cal1.set(2019, Calendar.APRIL, 20);
         Date toDate = cal1.getTime();
 
         List<Availability> allAvailabilities =
                 availabilityService.findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
-        Assert.assertEquals(3, allAvailabilities.size());
+        Assert.assertEquals(2, allAvailabilities.size());
 
     }
 
@@ -128,18 +133,37 @@ public class AvailabilityImplTest {
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(0);
         cal.set(2019, Calendar.MARCH, 15);
-    Date fromDate = cal.getTime();
+        Date fromDate = cal.getTime();
 
-    Calendar cal1 = Calendar.getInstance();
+        Calendar cal1 = Calendar.getInstance();
         cal1.setTimeInMillis(0);
-        cal1.set(2019, Calendar.APRIL, 15);
-    Date toDate = cal1.getTime();
+        cal1.set(2019, Calendar.MARCH, 25);
+        Date toDate = cal1.getTime();
 
-    boolean isAvailable;
+        boolean isAvailable;
 
-    isAvailable = availabilityService.existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
+        isAvailable = availabilityService.existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
 
-    Assert.assertEquals(true, isAvailable);
+        Assert.assertEquals(true, isAvailable);
 
     }
+
+//    @Test
+//    @Rollback(false)
+//    @Transactional
+//    public void getAvailabilitiesByFromDateEndingWithAndToDateIsAfter(){
+//
+//        Booking booking = bookingService.getById(2L);
+//        Long propertyId = booking.getProperty().getId();
+//        Availability availability = availabilityService.getById(propertyId);
+//
+//
+//        Date dateFrom = booking.getCheckIn();
+//        Date dateTo = booking.getCheckOut();
+//
+//
+//
+//    }
+
+
 }
