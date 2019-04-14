@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
     @Service
@@ -54,5 +57,15 @@ import java.util.List;
         public void deleteAvailability(@QueryParam("availabilityId") long id){
             Availability availability = availabilityService.getById(id);
             availabilityService.deleteAvailability(availability);
+        }
+
+        @Path("/get-availability")
+        @GET
+        @Produces(MediaType.APPLICATION_JSON)
+        public List<Availability> findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(
+                @QueryParam("from") String stringFromDate, @QueryParam("to") String stringToDate ) throws ParseException {
+            Date fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(stringFromDate);
+            Date toDate = new SimpleDateFormat("yyyy-MM-dd").parse(stringToDate);
+            return availabilityService.findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
         }
 }

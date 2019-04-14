@@ -32,22 +32,22 @@ public class AvailabilityImplTest {
 
         Availability availability = new Availability();
 
-        availability.setProperty(propertyService.getById(2L));
-        availability.setRoomName("Room no 1");
+        availability.setProperty(propertyService.getById(1L));
+        availability.setRoomName("Room no 4");
 
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(0);
-        cal.set(2019, 03, 10);
+        cal.set(2019, 4, 5);
         Date fromDate = cal.getTime();
         availability.setFromDate(fromDate);
 
-        cal.set(2019,03,20);
+        cal.set(2019,4,20);
         Date toDate = cal.getTime();
         availability.setToDate(toDate);
 
-        availability.setRoomType(String.valueOf(RoomType.SINGLE));
-        availability.setPriceDouble(new BigDecimal(200));
-        availability.setPriceSingle(new BigDecimal(120));
+        availability.setRoomType(String.valueOf(RoomType.DOUBLE));
+        availability.setPriceDouble(new BigDecimal(300));
+        availability.setPriceSingle(new BigDecimal(180));
 
         availabilityService.createAvailability(availability);
 
@@ -77,7 +77,7 @@ public class AvailabilityImplTest {
 
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(0);
-        cal.set(2019, 03, 15);
+        cal.set(2019, 3, 15);
         Date date = cal.getTime();
         availability.setToDate(date);
         availabilityService.updateAvailability(availability);
@@ -100,10 +100,46 @@ public class AvailabilityImplTest {
         Assert.assertEquals(size - 1, availabilityList1.size());
     }
 
-//    @Test
-//    @Rollback(false)
-//    @Transactional
-//    public List<Availability> findAllPropertiesAvailableDuringACertainDateInterval(){
-//
-//    }
+    @Test
+    @Rollback(false)
+    @Transactional
+    public void findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(){
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(0);
+        cal.set(2019, Calendar.MARCH, 15);
+        Date fromDate = cal.getTime();
+
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTimeInMillis(0);
+        cal1.set(2019, Calendar.JULY, 10);
+        Date toDate = cal1.getTime();
+
+        List<Availability> allAvailabilities =
+                availabilityService.findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
+        Assert.assertEquals(3, allAvailabilities.size());
+
+    }
+
+    @Test
+    @Rollback(false)
+    @Transactional
+    public void existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(){
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(0);
+        cal.set(2019, Calendar.MARCH, 15);
+    Date fromDate = cal.getTime();
+
+    Calendar cal1 = Calendar.getInstance();
+        cal1.setTimeInMillis(0);
+        cal1.set(2019, Calendar.APRIL, 15);
+    Date toDate = cal1.getTime();
+
+    boolean isAvailable;
+
+    isAvailable = availabilityService.existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
+
+    Assert.assertEquals(true, isAvailable);
+
+    }
 }
