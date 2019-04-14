@@ -3,6 +3,7 @@ package com.sda.booking.core.service;
 import com.sda.booking.core.entity.Availability;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public interface AvailabilityService {
@@ -12,6 +13,6 @@ public interface AvailabilityService {
     Availability createAvailability(Availability availability);
     Availability updateAvailability(Availability availability);
     void deleteAvailability(Availability availability);
-    List<Availability> findAllPropertiesAvailableDuringACertainDateInterval(LocalDate fromDate, LocalDate toDate);
-    public boolean existsAvailabilityByFromDateAndToDate(LocalDate fromDate, LocalDate toDate);
+    List<Availability> findAllPropertiesAvailableDuringACertainDateInterval(Date fromDate, Date toDate);
+    public boolean existsAvailabilityByFromDateAndToDate(Date fromDate, Date toDate);
 }

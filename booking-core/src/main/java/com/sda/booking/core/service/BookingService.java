@@ -10,4 +10,5 @@ public interface BookingService {
     Booking createBooking(Booking booking);
     Booking updateBooking(Booking booking);
     void deleteBooking(Booking booking);
+    void sendBookingMail(Booking booking);
 }
