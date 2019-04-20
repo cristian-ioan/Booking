@@ -122,7 +122,7 @@ public class AvailabilityImplTest {
 
         List<Availability> allAvailabilities =
                 availabilityService.findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
-        Assert.assertEquals(2, allAvailabilities.size());
+        Assert.assertEquals(0, allAvailabilities.size());
 
     }
 
@@ -132,12 +132,12 @@ public class AvailabilityImplTest {
     public void existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(){
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(0);
-        cal.set(2019, Calendar.MARCH, 15);
+        cal.set(2019, Calendar.APRIL, 15);
         Date fromDate = cal.getTime();
 
         Calendar cal1 = Calendar.getInstance();
         cal1.setTimeInMillis(0);
-        cal1.set(2019, Calendar.MARCH, 25);
+        cal1.set(2019, Calendar.APRIL, 25);
         Date toDate = cal1.getTime();
 
         boolean isAvailable;
