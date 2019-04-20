@@ -37,7 +37,9 @@ public class RatingImplTest {
         rating.setRating(1);
 
         ratingService.createRating(rating);
-        Assert.assertNotNull(rating);
+
+        List<Rating> ratings = ratingService.getAll();
+        Assert.assertEquals(7, ratings.size());
     }
 
     @Test

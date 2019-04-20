@@ -111,9 +111,9 @@ public class BookingImplTest {
     @Rollback(false)
     @Transactional
     public void sendBookingMailTest(){
-        Availability availability = availabilityService.getById(3L);
-        Booking booking = bookingService.getById(2L);
-
+        Availability availability = availabilityService.getById(2L);
+        Booking booking = bookingService.getById(1L);
         bookingService.sendBookingMail(booking,availability);
     }
+
 }
