@@ -1,6 +1,7 @@
 package com.sda.booking.core.service;
 
 import com.sda.booking.core.entity.Availability;
+import com.sda.booking.core.entity.Booking;
 import com.sda.booking.core.repository.AvailabilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +47,7 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     }
 
     @Override
-    public List<Availability> findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromDate, Date toDate) {
+    public List<Availability> findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(Date fromDate, Date toDate) {
         return availabilityRepository.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
     }
 
@@ -55,7 +56,7 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     public void availabilitiesAfterBooking(Booking booking) {
         Date fromDate = booking.getCheckIn();
         Date toDate = booking.getCheckOut();
-        List<Availability> availabilitiesBooked = availabilityRepository.findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate,toDate);
+        List<Availability> availabilitiesBooked = availabilityRepository.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate,toDate);
         if(availabilitiesBooked.size()==0){
             System.out.println("No availability!");
         }else{

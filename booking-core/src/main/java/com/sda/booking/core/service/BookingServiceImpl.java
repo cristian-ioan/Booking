@@ -59,7 +59,7 @@ public class BookingServiceImpl implements BookingService{
     public void sendBookingMail(Booking booking) {
 
         List<Availability> allAvailabilities = availabilityService.
-                findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(booking.getCheckIn(),booking.getCheckOut());
+                findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(booking.getCheckIn(),booking.getCheckOut());
         boolean isFound = false;
         String message = null;
         String subject = "Room reservation for " + booking.getClient().getName();;
