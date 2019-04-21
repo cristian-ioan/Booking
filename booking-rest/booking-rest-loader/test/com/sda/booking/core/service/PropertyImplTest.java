@@ -27,40 +27,46 @@ public class PropertyImplTest {
     @Rollback(false)
     @Transactional
     public void createPropertyTest() {
-        Property property = new Property();
-        property.setName("Ruina SRL");
-        property.seteMail("ruinasrl@gmail.com");
-        property.setPhone("0754265987");
-        property.setAddress("Brasov");
 
-        property.setHost(hostService.getById(1L));
+        Property property = new Property();
+
+        property.setName("Cascada SRL");
+        property.seteMail("cascadasrl@gmail.com");
+        property.setPhone("0799555888");
+        property.setAddress("Teleorman");
+
+        property.setHost(hostService.getById(3L));
         propertyService.createProperty(property);
-        Assert.assertNotNull(property);
+
+        List<Property> properties = propertyService.getAll();
+        Assert.assertEquals(7, properties.size());
     }
 
     @Test
     @Transactional
     @Rollback(false)
     public void getPropertyByIdTest() {
+
         Property property = propertyService.getById(1L);
-        Assert.assertEquals("Brasov", property.getAddress());
+        Assert.assertEquals("Valea Adanca", property.getAddress());
+
     }
 
     @Test
     @Rollback(false)
     @Transactional
-    public void getAllProportiesTest() {
+    public void getAllPropertiesTest() {
 
         Property property = new Property();
-        property.setName("Albinuta SRL");
-        property.seteMail("albinutasrl@gmail.com");
+        property.setName("Cuiul SRL");
+        property.seteMail("cuiulsrl@gmail.com");
         property.setPhone("0798258412");
-        property.setAddress("Valea Adanca");
+        property.setAddress("Targu Neamt");
         property.setHost(hostService.getById(3L));
         propertyService.createProperty(property);
 
         List<Property> properties = propertyService.getAll();
-        Assert.assertEquals(2, properties.size());
+        Assert.assertEquals(6, properties.size());
     }
 
     @Test
@@ -68,10 +74,10 @@ public class PropertyImplTest {
     public void updatePropertyTest(){
 
         Property property = propertyService.getById(1L);
-        property.setName("Dan Negrutu");
-        property.seteMail("dan.negrutu@gmail.com");
-        property.setPhone("0799215478");
-        property.setHost(hostService.getById(3L));
+        property.setName("Dan Negru");
+        property.seteMail("dan.negru@gmail.com");
+        property.setPhone("0799888999");
+        property.setHost(hostService.getById(2L));
         Property expectedProperty = propertyService.updateProperty(property);
         Property actualProperty = propertyService.getById(1L);
         Assert.assertEquals(expectedProperty, actualProperty);
@@ -84,7 +90,7 @@ public class PropertyImplTest {
 
         List<Property> properties = propertyService.getAll();
         int size = properties.size();
-        Property property = propertyService.getById(2L);
+        Property property = propertyService.getById(99L);
         propertyService.deleteProperty(property);
         properties = propertyService.getAll();
         Assert.assertEquals(size - 1, properties.size());

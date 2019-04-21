@@ -26,10 +26,10 @@ public class ClientImplTest {
         Client client = new Client();
         client.setName("Bogdan Bogdanel");
         client.setPhone("0726789456");
-        client.seteMail("bogdan.bogdanel@gmail.com");
+        client.seteMail("ioan.cristian74@gmail.com");
         clientService.createClient(client);
         Assert.assertEquals("Bogdan Bogdanel", client.getName());
-        Assert.assertEquals("bogdan.bogdanel@gmail.com", client.geteMail());
+        Assert.assertEquals("ioan.cristian74@gmail.com", client.geteMail());
 //        Assert.assertNotNull(client);
     }
 

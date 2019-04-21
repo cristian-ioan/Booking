@@ -67,13 +67,15 @@ public class BookingServiceImpl implements BookingService{
                 + "\n" + " We are looking forward to have you our guest!";
         String eMail = booking.getClient().geteMail();
         String subject = "Room reservation for " + booking.getClient().getName();
-        boolean isAvailable = availabilityService.existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(booking.getCheckIn(),booking.getCheckOut());
-        if(!isAvailable){
-            sendEmail.sendEmail(message,eMail,subject);
-        }else{
+        int size = availabilityService.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(booking.getCheckIn(),booking.getCheckOut()).size();
+//        boolean isAvailable = availabilityService.existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(booking.getCheckIn(),booking.getCheckOut());
+        if (size == 0){
             String nonAvailabilityMessage = "Sorry, but we don't have available rooms in the period you chose.";
             sendEmail.sendEmail(nonAvailabilityMessage,eMail,subject);
+        } else{
+            sendEmail.sendEmail(message,eMail,subject);
         }
+
     }
 
     public Long getIntervalBetweenTwoDates(Date firstDate, Date secondDate){
