@@ -147,44 +147,4 @@ public class AvailabilityImplTest {
 
     }
 
-    @Test
-    @Rollback(false)
-    @Transactional
-    public void existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(){
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(0);
-        cal.set(2019, Calendar.MARCH, 15);
-        Date fromDate = cal.getTime();
-
-        Calendar cal1 = Calendar.getInstance();
-        cal1.setTimeInMillis(0);
-        cal1.set(2019, Calendar.MARCH, 20);
-        Date toDate = cal1.getTime();
-
-        boolean isAvailable;
-
-        isAvailable = availabilityService.existsAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
-
-        Assert.assertEquals(true, isAvailable);
-
-    }
-
-//    @Test
-//    @Rollback(false)
-//    @Transactional
-//    public void getAvailabilitiesByFromDateEndingWithAndToDateIsAfter(){
-//
-//        Booking booking = bookingService.getById(2L);
-//        Long propertyId = booking.getProperty().getId();
-//        Availability availability = availabilityService.getById(propertyId);
-//
-//
-//        Date dateFrom = booking.getCheckIn();
-//        Date dateTo = booking.getCheckOut();
-//
-//
-//
-//    }
-
-
 }
