@@ -1,7 +1,6 @@
 package com.sda.booking.core.service;
 
 import com.sda.booking.core.entity.Availability;
-import com.sda.booking.core.entity.Booking;
 import com.sda.booking.core.enums.RoomType;
 import org.junit.Assert;
 import org.junit.Test;
@@ -143,7 +142,7 @@ public class AvailabilityImplTest {
         Date toDate = cal1.getTime();
 
         List<Availability> allAvailabilities =
-                availabilityService.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
+                availabilityService.findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
         Assert.assertEquals(2, allAvailabilities.size());
 
     }

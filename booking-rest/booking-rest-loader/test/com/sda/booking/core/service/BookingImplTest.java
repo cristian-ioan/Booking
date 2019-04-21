@@ -43,13 +43,13 @@ public class BookingImplTest {
 
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(0);
-        cal.set(2019, Calendar.AUGUST, 5);
+        cal.set(2019, Calendar.JANUARY, 5);
         Date date = cal.getTime();
         booking.setBookingDate(date);
-        cal.set(2019,Calendar.AUGUST,15);
+        cal.set(2019,Calendar.JANUARY,10);
         Date dateCheck1 = cal.getTime();
         booking.setCheckIn(dateCheck1);
-        cal.set(2019,Calendar.AUGUST,21);
+        cal.set(2019,Calendar.JANUARY,31);
         Date dateCheckOut = cal.getTime();
         booking.setCheckOut(dateCheckOut);
         booking.setNumberOfRooms(2);
@@ -111,9 +111,8 @@ public class BookingImplTest {
     @Rollback(false)
     @Transactional
     public void sendBookingMailTest(){
-        Availability availability = availabilityService.getById(2L);
         Booking booking = bookingService.getById(1L);
-        bookingService.sendBookingMail(booking,availability);
+        bookingService.sendBookingMail(booking);
     }
 
 }

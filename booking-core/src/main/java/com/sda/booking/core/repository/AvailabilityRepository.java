@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface AvailabilityRepository extends EntityRepository<Availability> {
 
-    List<Availability> findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromDate,
+    List<Availability> findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(Date fromDate,
                                                                                           Date toDate);
 }
 
