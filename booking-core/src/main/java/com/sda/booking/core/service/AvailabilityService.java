@@ -13,5 +13,5 @@ public interface AvailabilityService {
     Availability createAvailability(Availability availability);
     Availability updateAvailability(Availability availability);
     void deleteAvailability(Availability availability);
-    List<Availability> findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(Date fromDate, Date toDate);
+    List<Availability> findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(Date fromDate, Date toDate);
 }
