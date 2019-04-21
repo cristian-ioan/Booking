@@ -55,7 +55,4 @@ public class BookingRestService {
         Booking booking = bookingService.getById(id);
         bookingService.deleteBooking(booking);
     }
-
-
-
 }

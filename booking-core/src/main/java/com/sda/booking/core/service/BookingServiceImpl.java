@@ -82,11 +82,11 @@ public class BookingServiceImpl implements BookingService{
         }
         if (isFound){
             sendEmail.sendEmail(message,eMail,subject);
+            availabilityService.availabilitiesAfterBooking(booking);
         } else {
             String nonAvailabilityMessage = "Sorry, but we don't have available rooms in the period you chose.";
             sendEmail.sendEmail(nonAvailabilityMessage,eMail,subject);
         }
-
     }
 
     public Long getIntervalBetweenTwoDates(Date firstDate, Date secondDate){

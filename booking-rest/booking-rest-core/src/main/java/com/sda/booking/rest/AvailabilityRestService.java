@@ -68,4 +68,5 @@ import java.util.List;
             Date toDate = new SimpleDateFormat("yyyy-MM-dd").parse(stringToDate);
             return availabilityService.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
         }
+
 }
