@@ -66,6 +66,6 @@ import java.util.List;
                 @QueryParam("from") String stringFromDate, @QueryParam("to") String stringToDate ) throws ParseException {
             Date fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(stringFromDate);
             Date toDate = new SimpleDateFormat("yyyy-MM-dd").parse(stringToDate);
-            return availabilityService.findAvailabilitiesByFromDateGreaterThanEqualAndToDateLessThanEqual(fromDate, toDate);
+            return availabilityService.findAvailabilitiesByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
         }
 }

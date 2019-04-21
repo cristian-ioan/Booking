@@ -146,5 +146,17 @@ public class AvailabilityImplTest {
         Assert.assertEquals(2, allAvailabilities.size());
 
     }
+    @Test
+    @Rollback(false)
+    @Transactional
+    public void availabilitiesAfterBooking(){
+        Booking booking = bookingService.getById(2L);
+        List<Availability> availabilityListBefore = availabilityService.getAll();
+        availabilityService.availabilitiesAfterBooking(booking);
+        List<Availability> availabilityListAfter = availabilityService.getAll();
+        Assert.assertEquals(availabilityListBefore.size() + 1,availabilityListAfter.size());
+
+
+    }
 
 }
