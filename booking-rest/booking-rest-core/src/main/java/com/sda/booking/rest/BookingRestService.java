@@ -55,4 +55,15 @@ public class BookingRestService {
         Booking booking = bookingService.getById(id);
         bookingService.deleteBooking(booking);
     }
+
+    @Path("/send-email")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public void sendEmailBooking(@QueryParam("bookingId") long id){
+        Booking booking = bookingService.getById(id);
+        bookingService.sendBookingMail(booking);
+    }
+
 }
